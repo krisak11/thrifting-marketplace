@@ -1,19 +1,22 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+/*
+  File: src/App.tsx
+  Description: Main app router and structure
+*/
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Shopping from "./pages/Shopping";
 
-const App: React.FC = () => (
-  <Router>
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <h1>
-            Welcome to the thrifting website.
-          </h1>
-        }
-      />
-    </Routes>
-  </Router>
-);
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/shopping" element={<Shopping />} />
+
+      </Routes>
+    </Router>
+  );
+}
 
 export default App;

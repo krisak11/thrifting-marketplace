@@ -1,0 +1,95 @@
+/* Slider Container */
+.slider {
+  position: relative;
+  width: 100vw; /* Full viewport width */
+  min-width: 100%;
+  height: 500px; /* Adjust height as needed */
+  overflow: hidden; /* Hides the overflowing image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures images fill the area without changing layout */
+  display: block;
+}
+
+/* Text Overlay - Lowered for better image prominence */
+.overlay {
+  position: absolute;
+  bottom: 10%; /* Moves the overlay lower on the image */
+  left: 50%;
+  transform: translate(-50%, 0);
+  color: white;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  border-radius: 5px;
+  width: 60%;
+}
+
+.overlay h2 a {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Centered View Button */
+.view-button {
+  display: block;
+  margin: 10px auto; /* Centers the button horizontally */
+  padding: 10px 20px;
+  border: none;
+  background: #ff6f61;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Slider Controls */
+.controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.controls button {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Dots Indicator */
+.dots {
+  position: absolute;
+  bottom: 5%; /* Moves the dots slightly higher for balance */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.dot.active {
+  opacity: 1;
+  background: #ff6f61;
+}

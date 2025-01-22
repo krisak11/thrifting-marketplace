@@ -1,0 +1,9 @@
+/* Home Page Container */
+.home-container {
+    width:auto;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

@@ -1,0 +1,80 @@
+/* Navbar.css */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  /*flex-grow: 1; /* Allows nav-links to take available space but not push out nav-icons */
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  /*gap: 15px;
+  /*white-space: nowrap; /* Prevents icons from being pushed to a new line */
+  /*flex-shrink: 0; /* Prevents nav-icons from shrinking */
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  padding: 5px 10px;
+}
+
+.dropdown-toggle {
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px 10px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center; /* Align all icons to the same vertical level */
+  gap: 15px;
+}
+
+.nav-icons button,
+.nav-icons a {
+  font-size: 20px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-decoration: none;
+  display: flex; /* Ensures consistent alignment */
+  align-items: center;
+}
