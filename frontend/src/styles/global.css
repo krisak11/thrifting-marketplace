@@ -1,0 +1,10 @@
+:root {
+    --spacing-small: 10px;
+    --spacing-medium: 15px;
+    --spacing-large: 20px;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
