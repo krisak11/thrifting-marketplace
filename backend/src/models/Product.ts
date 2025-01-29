@@ -7,6 +7,8 @@ class Product extends Model {
   public description!: string;
   public price!: number;
   public quantity!: number;
+  public category!: string;
+  public imageUrl!: string;
 }
 
 Product.init(
@@ -32,10 +34,19 @@ Product.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    category: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    imageUrl: {  // Store only the URL (string)
+        type: DataTypes.STRING,
+        allowNull: true,  // image is optional - serve placeholder instead
+    },
   },
   {
     sequelize,
     tableName: 'products',
+    modelName: 'Product',
   }
 );
 
