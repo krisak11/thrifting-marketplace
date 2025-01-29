@@ -47,5 +47,12 @@ backend/dist/
 backend/src/**/*.js  # Ignore compiled files if you use TypeScript
 backend/src/**/*.js.map  # Ignore source maps
 
+# Ignore uploaded images
+/uploads
+backend/uploads
+uploads/*
+.png
+.jpg
+
 # MacOS specific
 **/.DS_Store
