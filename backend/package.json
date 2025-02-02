@@ -2,12 +2,15 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "setup": "npm install && npm run build",
     "test": "NODE_ENV=test jest --coverage",
     "test:watch": "jest --watch",
-    "start": "nodemon --delay 500ms src/server.ts",
-    "seed": "ts-node src/utils/seedProducts.ts"
+    "start": "nodemon --exec 'node --loader ts-node/esm' src/server.ts",
+    "seedproducts": "ts-node src/utils/seedProducts.ts",
+    "seedcategories": "ts-node --loader ts-node/esm src/utils/seedCategories.ts"
+
   },
   "keywords": [],
   "author": "",

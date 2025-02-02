@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
+import sequelize from '../config/database.js';
+import Category from './Category.js';
 
 class Product extends Model {
   public id!: number;
@@ -7,7 +8,8 @@ class Product extends Model {
   public description!: string;
   public price!: number;
   public quantity!: number;
-  public category!: string;
+  public categoryId!: number;     
+  public tags!: string[]; 
   public imageUrl!: string;
 }
 
@@ -34,9 +36,18 @@ Product.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    category: {
-        type: DataTypes.STRING,
-        allowNull: false,
+    // Store only the lowest-level category in the hierarchy.
+    categoryId: { 
+      type: DataTypes.INTEGER, 
+      allowNull: true, 
+      references: { 
+        model: Category, key: "id" 
+      } 
+    },
+    // Tags for special attributes like on-sale, new-item, vintage.
+    tags: { 
+      type: DataTypes.ARRAY(DataTypes.STRING), 
+      allowNull: true 
     },
     imageUrl: {  // Store only the URL (string)
         type: DataTypes.STRING,
@@ -49,5 +60,8 @@ Product.init(
     modelName: 'Product',
   }
 );
+
+// Define Product ↔ Category Relationship
+Product.belongsTo(Category, { foreignKey: "categoryId", as: "category" });
 
 export default Product;

@@ -7,17 +7,19 @@ interface Product {
   id: number;
   name: string;
   description: string;
-  price: string;
+  price: number;
   quantity: number;
-  category: string;
+  categoryId: number;
+  tags: string[],
   imageUrl: string;
 }
 
 interface ProductGridProps {
-  category: string;
+  categoryId?: number; // optional
+  tags?: string[];  // optional
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ category }) => {
+const ProductGrid: React.FC<ProductGridProps> = ({ categoryId, tags }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -25,8 +27,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({ category }) => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        console.log(`Fetching products for category: ${category}`);
-        const data = await fetchProducts(category);
+        console.log(`Fetching products for category: ${categoryId || "N/A"}, tags: ${tags || "N/A"}`);
+        const data = await fetchProducts(categoryId, tags); // ✅ Pass both categoryId and tags
         setProducts(data);
       } catch (error: unknown) {
         console.error("Error fetching products:", error);
@@ -35,9 +37,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ category }) => {
         setLoading(false);
       }
     };
-
+  
     loadProducts();
-  }, [category]);
+  }, [categoryId, tags]); // ✅ Re-fetch when categoryId or tags change
+  
 
   if (loading) return <p className="loading-message">Loading products...</p>;
   if (error) return <p className="error-message">{error}</p>;

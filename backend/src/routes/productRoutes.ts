@@ -1,7 +1,10 @@
-import express, { Request, Response } from 'express';
+import express, { type Request, type Response } from 'express';
 import { body, validationResult } from 'express-validator';
-import Product from '../models/Product';
-import upload from '../middleware/upload';
+import { getProductsByCategory, getProductsByTag } from "../services/productService.js";
+
+import Product from '../models/Product.js';
+import Category from '../models/Category.js';
+import upload from '../middleware/upload.js';
 
 const router = express.Router();
 
@@ -17,25 +20,38 @@ router.post('/upload', upload.single('image'), (req: Request, res: Response): vo
   res.json({ imageUrl });
 });
 
-// 📦 **FETCH PRODUCTS (WITH CATEGORY FILTERING)**
+
+/**
+ *  GET Products with Category & Tag Filtering
+ */
 router.get('/products', async (req: Request, res: Response) => {
   try {
-    const { category } = req.query;
+    const { category, tag } = req.query;
 
-    // If a category is provided, filter by it, otherwise return all products
-    const products = category
-      ? await Product.findAll({ where: { category } })
-      : await Product.findAll();
+    let products = [];
+
+    if (category) {
+      // ✅ Fetch products by category (includes subcategories)
+      products = await getProductsByCategory(category as string);
+    } else if (tag) {
+      // ✅ Fetch products by tag (e.g., "On-Sale", "Vintage")
+      products = await getProductsByTag(tag as string);
+    } else {
+      // ✅ If no category or tag is provided, return all products
+      products = await Product.findAll();
+    }
 
     res.json(products);
   } catch (error) {
-    console.error('Error fetching products:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    console.error("Error fetching products:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
 
-// 🛒 **CREATE NEW PRODUCT (WITH IMAGE SUPPORT)**
+/**
+ *  POST /products - Create New Product (With Image Upload)
+ */
 router.post(
   '/products',
   [
@@ -43,8 +59,9 @@ router.post(
     body('description').notEmpty().withMessage('Description is required'),
     body('price').isFloat({ gt: 0 }).withMessage('Price must be a positive number'),
     body('quantity').isInt({ gt: 0 }).withMessage('Quantity must be a positive integer'),
-    body('name').notEmpty().withMessage('Category is required'),
-  ], 
+    body('categoryId').isInt().withMessage('CategoryId must be a valid integer'),
+    body('tags').optional().isArray().withMessage('Tags must be an array of strings'),
+  ],
   upload.single('image'), // Handle image upload
 
   async (req: Request, res: Response) => {
@@ -56,7 +73,14 @@ router.post(
 
     try {
       // Extract product fields from request body
-      const { name, description, price, quantity, category } = req.body;
+      const { name, description, price, quantity, categoryId, tags } = req.body;
+
+      // Ensure category exists
+      const category = await Category.findByPk(categoryId);
+      if (!category) {
+        res.status(400).json({ message: 'Invalid categoryId: Category does not exist' });
+        return;
+      }
 
       // Get uploaded image URL if available
       const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
@@ -67,11 +91,14 @@ router.post(
         description,
         price,
         quantity,
-        category,
+        categoryId,
+        tags, // Can be empty array or null
         imageUrl,
       });
 
       res.status(201).json(newProduct);
+      return;
+
     } catch (error) {
       console.error('Error creating product:', error);
       res.status(500).json({ message: 'Internal Server Error' });

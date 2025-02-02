@@ -1,6 +1,6 @@
 // backend/src/__tests__/userModel.test.ts
-import User from '../models/User';
-import { resetTestDatabase } from '../utils/testDatabase';
+import User from '../models/User.js';
+import { resetTestDatabase } from '../utils/testDatabase.js';
 
 beforeAll(async () => {
   await resetTestDatabase();

@@ -18,8 +18,8 @@ const Home: React.FC = () => {
       <h2 className="section-title">Categories</h2>
       {/* Category Grid Component Goes Here */}
       
-      <h2 className="section-title">Popular Products</h2>
-      <ProductGrid category="popular" />
+      <h2 className="section-title">On Sale</h2>
+      <ProductGrid tags={["On-Sale"]} />
 
       <button className="see-more">See More</button>
       <Footer />

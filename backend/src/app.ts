@@ -1,8 +1,15 @@
 // src/app.ts
-import express, { Request, Response } from 'express';
+import express, { type Request, type Response } from 'express';
 import cors from 'cors';
 import path from 'path';
-import productRoutes from './routes/productRoutes';
+import productRoutes from './routes/productRoutes.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Define __dirname manually (ESM workaround)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 const app = express();
 

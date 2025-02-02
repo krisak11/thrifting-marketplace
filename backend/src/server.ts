@@ -1,8 +1,8 @@
 // src/server.ts
 import dotenv from 'dotenv';
-import app from './app';
-import sequelize from './config/database';
-import './models/index'; // Ensure models are registered and relationships are defined
+import app from './app.js';
+import sequelize from './config/database.js';
+import './models/index.js'; // Ensure models are registered and relationships are defined
 
 // Load .env for development/production
 dotenv.config();

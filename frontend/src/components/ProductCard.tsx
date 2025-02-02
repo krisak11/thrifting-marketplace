@@ -6,7 +6,16 @@ import React from 'react';
 import '../styles/ProductCard.css';
 
 interface ProductCardProps {
-    product: { id: number; name: string; description: string, price: string; imageUrl?: string };
+    
+    product: { 
+        id: number; 
+        name: string; 
+        description: string, 
+        price: number; 
+        quantity: number, 
+        categoryId: number, 
+        tags: string[],
+        imageUrl?: string };
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
@@ -14,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="product-card">
             {product.imageUrl && (
                 <img
-                    src={import.meta.env.VITE_API_URL + product.imageUrl}
+                    src={import.meta.env.VITE_API_URL + (product.imageUrl || "/uploads/placeholder.png")}
                     alt={product.name}
                     className="product-image"
                 />

@@ -1,15 +1,52 @@
 //backend/src/__tests__/productRoutes.integration.test.ts
 import request from 'supertest';
-import app from '../app';
-import Product from '../models/Product';
-import { resetTestDatabase } from '../utils/testDatabase';
+import app from '../app.js';
+import Product from '../models/Product.js';
+import Category from '../models/Category.js'
+import { resetTestDatabase } from '../utils/testDatabase.js';
 
 beforeAll(async () => {
   await resetTestDatabase();
+  console.log("Seeding test products for intergration test...");
+
+  // ✅ Fetch categories from DB and map them by name
+  const categories = await Category.findAll();
+  const categoryMap = categories.reduce((map, cat) => {
+    map[cat.name] = cat.id;
+    return map;
+  }, {} as Record<string, number>);
+
+  // ✅ Create products with valid categoryId references
   await Product.bulkCreate([
-    { name: 'Vintage Jacket', description: 'A cool jacket', price: 50, quantity: 10 },
-    { name: 'Leather Boots', description: 'Stylish boots', price: 75, quantity: 5 },
+    {
+      name: 'Vintage Jacket',
+      description: 'A stylish jacket',
+      price: 50,
+      quantity: 10,
+      categoryId: categoryMap['Jackets'], // Fetching ID dynamically
+      tags: ['Vintage'],
+      imageUrl: '/uploads/vintage-jacket.png',
+    },
+    {
+      name: 'Leather Boots',
+      description: 'Classic boots',
+      price: 75,
+      quantity: 5,
+      categoryId: categoryMap['Shoes'],
+      tags: ['On-Sale'],
+      imageUrl: '/uploads/leather-boots.png',
+    },
+    {
+      name: 'Denim Jeans',
+      description: 'Comfortable and durable',
+      price: 40,
+      quantity: 20,
+      categoryId: categoryMap['Jeans'],
+      tags: ['New-Item'],
+      imageUrl: '/uploads/denim-jeans.png',
+    },
   ]);
+
 });
 
 afterAll(async () => {

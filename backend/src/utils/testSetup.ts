@@ -1,8 +1,8 @@
 // backend/src/utils/testSetup.ts
 import path from 'path';
 import dotenv from 'dotenv';
-import { resetTestDatabase } from './testDatabase';
-import sequelize from '../config/database';
+import { resetTestDatabase } from './testDatabase.js';
+import sequelize from '../config/database.js';
 
 // Construct an absolute path to the .env.test file
 const envPath = path.resolve(__dirname, '../../.env.test');

@@ -1,9 +1,9 @@
 //backend/src/__tests__/productRoutes.unit.test.ts
 import request from 'supertest';
 import express from 'express';
-import productRoutes from '../routes/productRoutes';
-import Product from '../models/Product'; // Sequelize model
-import { createTestApp } from '../utils/testUtils';
+import productRoutes from '../routes/productRoutes.js';
+import Product from '../models/Product.js'; // Sequelize model
+import { createTestApp } from '../utils/testUtils.js';
 
 // Mock the Product model
 jest.mock('../models/Product', () => ({

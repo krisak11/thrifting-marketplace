@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database';
-import User from './User';
-import Product from './Product';
+import sequelize from '../config/database.js';
+import User from './User.js';
+import Product from './Product.js';
 
 class Order extends Model {
   public id!: number;
