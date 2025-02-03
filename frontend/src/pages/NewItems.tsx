@@ -13,7 +13,7 @@ const NewItems: React.FC = () => {
         <div className="newitems-container">
             <Navbar />
             <h1 className="page-title">New Items</h1>
-            <ProductGrid category="new-items" />
+            <ProductGrid tags={["new-items"]} />
             <Footer />
         </div>
     );

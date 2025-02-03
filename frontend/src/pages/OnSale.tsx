@@ -13,7 +13,7 @@ const OnSale: React.FC = () => {
         <div className="onsale-container">
             <Navbar />
             <h1 className="page-title">On Sale</h1>
-            <ProductGrid category="on-sale" />
+            <ProductGrid tags={["On-Sale"]} />
             <Footer />
         </div>
     );
