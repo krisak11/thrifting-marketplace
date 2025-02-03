@@ -3,6 +3,7 @@ import express, { type Request, type Response } from 'express';
 import cors from 'cors';
 import path from 'path';
 import productRoutes from './routes/productRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js'
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -27,8 +28,11 @@ app.use(express.json());
 // Serve static files from 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
-// mounting productRoutes at the root
-app.use('/', productRoutes);
+// mounting productRoutes at the root.
+app.use('/api', productRoutes);
+
+//mounting categoryRoutes at the root.
+app.use('/api', categoryRoutes);
 
 // Test Route
 app.get('/', (req: Request, res: Response) => {
