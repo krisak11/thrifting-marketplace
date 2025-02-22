@@ -68,11 +68,10 @@ router.get("/categories:id", async (req: Request, res: Response) => {
 router.get("/categories-by-name/:name", async (req: Request, res: Response) => {
     try {
       const { name } = req.params;
-      const formattedName = name.replace(/-/g, " "); // ✅ Convert dashes to spaces
-      console.log(`Looking up category by name: ${formattedName}`); 
+      console.log(`Looking up category by name: ${name}`); 
   
       const category = await Category.findOne({
-        where: { name: formattedName },
+        where: { name: name },
         include: [{ model: Category, as: "subcategories" }],
       });
   

@@ -1,6 +1,6 @@
 import express, { type Request, type Response } from 'express';
 import { body, validationResult } from 'express-validator';
-import { getProductsByCategory, getProductsByTag } from "../services/productService.js";
+import { getProductsByCategoryName, getProductsByCategoryId, getProductsByTag } from "../services/productService.js";
 
 import Product from '../models/Product.js';
 import Category from '../models/Category.js';
@@ -30,14 +30,17 @@ router.get('/products', async (req: Request, res: Response) => {
 
     let products = [];
 
-    if (category) {
-      // ✅ Fetch products by category (includes subcategories)
-      products = await getProductsByCategory(category as string);
+    if (category && !isNaN(Number(category))) { 
+      // ✅ If category is a number, fetch by ID
+      products = await getProductsByCategoryId(Number(category));
+    } else if (category) {
+      // ✅ Fetch products by category name
+      products = await getProductsByCategoryName(category as string);
     } else if (tag) {
-      // ✅ Fetch products by tag (e.g., "On-Sale", "Vintage")
+      // ✅ Fetch products by tag
       products = await getProductsByTag(tag as string);
     } else {
-      // ✅ If no category or tag is provided, return all products
+      // ✅ Return all products if no filters provided
       products = await Product.findAll();
     }
 

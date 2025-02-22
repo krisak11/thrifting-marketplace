@@ -47,7 +47,7 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({ parentId = null }) => {
         <CategoryCard
           key={category.id}
           category={category}
-          onClick={() => navigate(`/categories/${category.name.replace(/\s+/g, "-")}`)} // Convert spaces to dashes
+          onClick={() => navigate(`/categories/${category.name}`)} // Keep dashes in the URL
           />
       ))}
     </div>

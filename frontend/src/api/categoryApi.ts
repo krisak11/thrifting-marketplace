@@ -15,8 +15,8 @@ export const fetchCategoryById = async (parentId: number | null = null) => {
 
 export const fetchCategoryByName = async (categoryName: string) => {
     try {
-      const response = await api.get(`/api/categories-by-name/${categoryName}`);
-      return response.data;
+        const encodedName = encodeURIComponent(categoryName); // Encode the category name
+        const response = await api.get(`/api/categories-by-name/${encodedName}`);      return response.data;
     } catch (error: unknown) {
       console.error("Error fetching category:", error);
       throw error;

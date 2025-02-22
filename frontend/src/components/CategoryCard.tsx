@@ -14,12 +14,14 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
   const imageUrl = category.imageUrl
     ? import.meta.env.VITE_API_URL + category.imageUrl
     : '/uploads/placeholder.png'; // Fallback to default image
-console.log(imageUrl)
+  console.log(imageUrl);
   return (
     <div className="category-card" onClick={onClick}>
       <img src={imageUrl} alt={category.name} className="category-image" />
 
-      <h3 className="category-name">{category.name}</h3>
+      <h3 className="category-name">
+        {category.name.replace(/-/g, ' ')} {/* Replace dashes with spaces */}
+      </h3>
     </div>
   );
 };
