@@ -1,0 +1,39 @@
+.product-card {
+    width: 200px;
+    height: 250px;
+    background: #f8f8f8;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures image and text are spaced properly */
+}
+  
+.product-card:hover {
+    transform: scale(1.05);
+}
+  
+.product-image {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+  
+.product-name {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 10px;
+    color: #333; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); 
+    white-space: normal; /* Allow text wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 30%; /* Ensures it doesn't overflow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

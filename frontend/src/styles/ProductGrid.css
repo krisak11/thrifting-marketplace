@@ -1,0 +1,21 @@
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .loading-message,
+  .error-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+  }

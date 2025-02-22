@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Shopping from "./pages/Shopping";
 import OnSale from "./pages/OnSale";
 import NewItems from "./pages/NewItems";
+import Categories from "./pages/Categories";
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/shopping" element={<Shopping />} />
         <Route path="/on-sale" element={<OnSale />} />
         <Route path="/new-items" element={<NewItems />} />
+        <Route path="/categories" element={<Categories />}/>
       </Routes>
     </Router>
   );

@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
                     onMouseEnter={() => setDropdownOpen(true)}
                     onMouseLeave={() => setDropdownOpen(false)}
                 >
-                    <Link to="#" className="dropdown-toggle">
+                    <Link to="/categories" className="dropdown-toggle">
                         Categories
                     </Link>{' '}
                     {/* # is a placeholder */}
@@ -40,9 +40,6 @@ const Navbar: React.FC = () => {
                             </li>
                             <li>
                                 <Link to="/category/shoes">Shoes</Link>
-                            </li>
-                            <li>
-                                <Link to="/category/new">New Clothes</Link>
                             </li>
                         </ul>
                     )}
