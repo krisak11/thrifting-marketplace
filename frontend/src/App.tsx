@@ -20,6 +20,8 @@ function App() {
         <Route path="/on-sale" element={<OnSale />} />
         <Route path="/new-items" element={<NewItems />} />
         <Route path="/categories" element={<Categories />}/>
+        <Route path="/categories/:name" element={<Categories />} /> {/* ✅ Dynamic route */}
+
       </Routes>
     </Router>
   );

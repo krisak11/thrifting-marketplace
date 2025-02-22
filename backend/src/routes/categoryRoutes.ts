@@ -22,18 +22,20 @@ router.get("/categories", async (req: Request, res: Response) => {
 
 router.get("/categories-images", async (req: Request, res: Response) => {
     try {
-      const categories = await Category.findAll();
-      const categoriesWithImages = await Promise.all(
-        categories.map(async (category) => {
-          const product = await Product.findOne({ where: { categoryId: category.id } });
-          return {
-            ...category.toJSON(),
-            imageUrl: product ? product.imageUrl : "/uploads/placeholder.png",
-          };
-        })
-      );
-  
-      res.json(categoriesWithImages);
+        const { parentId } = req.query; // Get parentId from query params
+        // Build a dynamic filter for parentId
+        const whereCondition = parentId !== undefined ? { parentId: parentId === '' ? null : parentId } : {};
+        const categories = await Category.findAll({where: whereCondition});
+        const categoriesWithImages = await Promise.all(
+            categories.map(async (category) => {
+            const product = await Product.findOne({ where: { categoryId: category.id } });
+            return {
+                ...category.toJSON(),
+                imageUrl: product ? product.imageUrl : "/uploads/placeholder.png",
+            };
+            })
+        );
+        res.json(categoriesWithImages);
     } catch (error) {
       console.error("Error fetching categories:", error);
       res.status(500).json({ message: "Internal Server Error" });
@@ -62,5 +64,30 @@ router.get("/categories:id", async (req: Request, res: Response) => {
     return;
   }
 });
+
+router.get("/categories-by-name/:name", async (req: Request, res: Response) => {
+    try {
+      const { name } = req.params;
+      const formattedName = name.replace(/-/g, " "); // ✅ Convert dashes to spaces
+      console.log(`Looking up category by name: ${formattedName}`); 
+  
+      const category = await Category.findOne({
+        where: { name: formattedName },
+        include: [{ model: Category, as: "subcategories" }],
+      });
+  
+      if (!category) {
+        res.status(404).json({ message: "Category not found" });
+        return
+      }
+  
+      res.json(category);
+    } catch (error) {
+      console.error("Error fetching category by name:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  });
+  
+  
 
 export default router;

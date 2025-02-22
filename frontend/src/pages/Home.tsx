@@ -17,7 +17,7 @@ const Home: React.FC = () => {
       <Slider />
 
       <h2 className="section-title">Categories</h2>
-      <CategoryGrid />
+      <CategoryGrid parentId={null}/> {/* Only displays top-level categories */}
       
       <h2 className="section-title">On Sale</h2>
       <ProductGrid tags={["On-Sale"]} />
