@@ -7,16 +7,17 @@ import Navbar from "../components/Navbar";
 import Slider from "../components/Slider";
 import Footer from "../components/Footer";
 import ProductGrid from "../components/ProductGrid";
+import CategoryGrid from "../components/CategoryGrid";
 import "../styles/Home.css";
 
 const Home: React.FC = () => {
   return (
     <div className="home-container">
-
       <Navbar />
       <Slider />
+
       <h2 className="section-title">Categories</h2>
-      {/* Category Grid Component Goes Here */}
+      <CategoryGrid />
       
       <h2 className="section-title">On Sale</h2>
       <ProductGrid tags={["On-Sale"]} />
