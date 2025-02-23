@@ -28,9 +28,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     className="product-image"
                 />
             )}
-            <h3 className="product-name">{product.name}</h3>
-            <p className="product-price">${product.price}</p>
-            <button className="add-to-cart">Add to Cart</button>
+            <div className="product-info-wrapper">
+                <h3 className="product-name">{product.name}</h3>
+                <p className="product-price">${product.price}</p>
+                <button className="add-to-cart">Add to Cart</button>
+            </div>
         </div>
     );
 };

@@ -1,0 +1,14 @@
+footer {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    padding: 10px;
+    justify-content: space-between;
+
+    .info p{
+        margin: 0;
+    }
+    .info h3 {
+        margin:  8px 0;
+    }
+}
