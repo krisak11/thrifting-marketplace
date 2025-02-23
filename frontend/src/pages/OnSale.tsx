@@ -12,8 +12,10 @@ const OnSale: React.FC = () => {
     return (
         <div className="onsale-container">
             <Navbar />
-            <h1 className="page-title">On Sale</h1>
-            <ProductGrid tags={["On-Sale"]} />
+            <div className="main">
+                <h1 className="page-title">On Sale</h1>
+                <ProductGrid tags={["On-Sale"]} />
+            </div>
             <Footer />
         </div>
     );

@@ -3,6 +3,7 @@
   Description: Component to display individual product details
 */
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/ProductCard.css';
 
 interface ProductCardProps {
@@ -19,8 +20,11 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+    const navigate = useNavigate(); // ✅ Initialize navigation
+
     return (
-        <div className="product-card">
+        /* Navigate to product details */
+        <div className="product-card" onClick={() => navigate(`/products/${product.id}`)}> {}
             {product.imageUrl && (
                 <img
                     src={import.meta.env.VITE_API_URL + (product.imageUrl || "/uploads/placeholder.png")}

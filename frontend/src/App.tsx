@@ -8,6 +8,7 @@ import Shopping from "./pages/Shopping";
 import OnSale from "./pages/OnSale";
 import NewItems from "./pages/NewItems";
 import Categories from "./pages/Categories";
+import ProductDetail from "./pages/ProductDetail";
 
 
 
@@ -20,7 +21,8 @@ function App() {
         <Route path="/on-sale" element={<OnSale />} />
         <Route path="/new-items" element={<NewItems />} />
         <Route path="/categories" element={<Categories />}/>
-        <Route path="/categories/:name" element={<Categories />} /> {/* ✅ Dynamic route */}
+        <Route path="/categories/:name" element={<Categories />} /> {/* Dynamic route by name */}
+        <Route path="/products/:id" element={<ProductDetail />} /> {/* route to product page by id */}
 
       </Routes>
     </Router>

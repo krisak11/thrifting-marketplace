@@ -51,6 +51,24 @@ router.get('/products', async (req: Request, res: Response) => {
   }
 });
 
+router.get('/products/:id', async (req: Request, res: Response) => {
+  try {
+    const product = await Product.findByPk(req.params.id, {
+      include: [{ model: Category, as: "category" }], //  Include category info
+    });
+
+    if (!product) {
+      res.status(404).json({ message: "Product not found" });
+      return;
+    }
+
+    res.json(product);
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 
 /**
  *  POST /products - Create New Product (With Image Upload)

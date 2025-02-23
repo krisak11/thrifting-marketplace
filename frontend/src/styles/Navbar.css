@@ -21,7 +21,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding: var(--spacing-small) var(--spacing-medium);
+  /* padding: var(--spacing-small) var(--spacing-medium); */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 

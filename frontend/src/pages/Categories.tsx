@@ -56,34 +56,36 @@ const Categories: React.FC = () => {
   return (
     <div className="categories-container">
       <Navbar />
+        <div className="wrapper">
 
-      {/* ✅ If no category name is in the URL, show only top-level categories */}
-      {!name ? (
-        <>
-          <h2 className="section-title">All Categories</h2>
-          <CategoryGrid parentId={null} />
-        </>
-      ) : (
-        <>
-          <h2 className="section-title">{category?.name}</h2>
+            {/* ✅ If no category name is in the URL, show only top-level categories */}
+            {!name ? (
+                <>
+                <h2 className="section-title">All Categories</h2>
+                <CategoryGrid parentId={null} />
+                </>
+            ) : (
+                <>
+                <h2 className="section-title">{category?.name}</h2>
 
-          {/* ✅ Display subcategories if available */}
-          {category?.subcategories && category.subcategories.length > 0 && (
-            <>
-              <h3 className="section-title">Subcategories</h3>
-              <CategoryGrid parentId={category.id} />
-            </>
-          )}
+                {/* ✅ Display subcategories if available */}
+                {category?.subcategories && category.subcategories.length > 0 && (
+                    <>
+                    <h3 className="section-title">Subcategories</h3>
+                    <CategoryGrid parentId={category.id} />
+                    </>
+                )}
 
-          {/* ✅ Display products for this category */}
-          <h3 className="section-title">Products in {category?.name}</h3>
-          {products.length > 0 ? (
-            <ProductGrid categoryId={category?.id} />
-          ) : (
-            <p className="no-products-message">No products found in this category (id: {category?.id}).</p>
-          )}
-        </>
-      )}
+                {/* ✅ Display products for this category */}
+                <h3 className="section-title">Products in {category?.name}</h3>
+                {products.length > 0 ? (
+                    <ProductGrid categoryId={category?.id} />
+                ) : (
+                    <p className="no-products-message">No products found in this category (id: {category?.id}).</p>
+                )}
+                </>
+            )}
+        </div>
 
       <Footer />
     </div>

@@ -12,8 +12,10 @@ const NewItems: React.FC = () => {
     return (
         <div className="newitems-container">
             <Navbar />
-            <h1 className="page-title">New Items</h1>
-            <ProductGrid tags={["new-items"]} />
+            <div className="wrapper">
+                <h1 className="page-title">New Items</h1>
+                <ProductGrid tags={["new-items"]} />
+            </div>
             <Footer />
         </div>
     );

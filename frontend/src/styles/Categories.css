@@ -1,0 +1,12 @@
+.categories-container {
+    width:100vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.wrapper {
+    flex:1;
+}

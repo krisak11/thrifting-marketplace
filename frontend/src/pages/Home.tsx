@@ -14,15 +14,17 @@ const Home: React.FC = () => {
   return (
     <div className="home-container">
       <Navbar />
-      <Slider />
+      <div className="main-wrapper">
+        <Slider />
 
-      <h2 className="section-title">Categories</h2>
-      <CategoryGrid parentId={null}/> {/* Only displays top-level categories */}
-      
-      <h2 className="section-title">On Sale</h2>
-      <ProductGrid tags={["On-Sale"]} />
+        <h2 className="section-title">Categories</h2>
+        <CategoryGrid parentId={null}/> {/* Only displays top-level categories */}
+        
+        <h2 className="section-title">On Sale</h2>
+        <ProductGrid tags={["On-Sale"]} />
 
-      <button className="see-more">See More</button>
+        <button className="see-more">See More</button>
+      </div>
       <Footer />
     </div>
   );
